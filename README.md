@@ -46,15 +46,18 @@
 #### 備考
 - 商品画像はActive Storageを使用して管理
 
-## commentsテーブル
-column|type|Options
-content, text, null:false
-created_at, datetime, null:false
-updated_at, datetime, null:false
+## ordersテーブル
+| Column               | Type    | Options                        |
+|----------------------|---------|--------------------------------|
+| created_at           | datetime| null: false                    |
+| updated_at           | datetime| null: false                    |
+| user_id              | integer | null: false, foreign_key: true |
+| item_id              | integer | null: false, foreign_key: true |
 
-## Association
+### Association
 - belongs_to :user
 - belongs_to :item
+- has_one :delivery_address
 
 ## commentsテーブル
 | Column      | Type    | Options                        |
@@ -68,7 +71,6 @@ updated_at, datetime, null:false
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :delivery_address
 
 ## delivery_addressesテーブル
 | Column        | Type    | Options                        |
