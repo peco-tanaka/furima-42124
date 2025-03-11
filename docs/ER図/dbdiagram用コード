@@ -1,0 +1,45 @@
+// Users table
+Table users {
+  id integer [primary key]
+  last_name string [not null]
+  first_name string [not null]
+  last_name_kana string [not null]
+  first_name_kana string [not null]
+  nickname string [not null]
+  email string [not null, unique]
+  encrypted_password string [not null]
+  birth_date date [not null]
+}
+
+// Items table
+Table items {
+  id integer [primary key]
+  name string [not null]
+  description text [not null]
+  condition_id integer [not null]
+  price integer [not null]
+  shipping_fee_status_id integer [not null]
+  shipping_day_id integer [not null]
+  prefecture_id integer [not null]
+  category_id integer [not null]
+  user_id integer [not null, ref: > users.id]
+}
+
+// Orders table
+Table orders {
+  id integer [primary key]
+  user_id integer [not null, ref: > users.id]
+  item_id integer [not null, ref: > items.id]
+}
+
+// Delivery addresses table
+Table delivery_addresses {
+  id integer [primary key]
+  postal_code string [not null]
+  prefecture_id integer [not null]
+  city string [not null]
+  address string [not null]
+  building_name string
+  phone_number string [not null]
+  order_id integer [not null, ref: > orders.id]
+}
