@@ -7,7 +7,7 @@ Table users {
   first_name_kana string [not null]
   nickname string [not null]
   email string [not null, unique]
-  password string [not null]
+  encrypted_password string [not null]
   birth_date date [not null]
 }
 
@@ -18,9 +18,9 @@ Table items {
   description text [not null]
   condition_id integer [not null]
   price integer [not null]
-  shipping_fee_status integer [not null]
+  shipping_fee_status_id integer [not null]
   shipping_day_id integer [not null]
-  sender_prefecture_id integer [not null]
+  prefecture_id integer [not null]
   category_id integer [not null]
   user_id integer [not null, ref: > users.id]
 }
@@ -43,9 +43,3 @@ Table delivery_addresses {
   phone_number string [not null]
   order_id integer [not null, ref: > orders.id]
 }
-
-// これらの行を削除しました（重複しているため）
-// Ref: items.user_id > users.id
-// Ref: orders.user_id > users.id
-// Ref: orders.item_id > items.id
-// Ref: delivery_addresses.order_id > orders.id
