@@ -18,7 +18,7 @@
 
 ## itemsテーブル
 | Column                 | Type       | Options                        |
-|-------------------------------------|--------------------------------|
+|------------------------|------------|--------------------------------|
 | name                   | string     | null: false                    |
 | description            | text       | null: false                    |
 | condition_id           | integer    | null: false                    |
