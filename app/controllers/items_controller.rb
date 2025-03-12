@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     # @ = .all
   end
@@ -29,5 +31,4 @@ class ItemsController < ApplicationController
       :condition_id, :shipping_fee_status_id, :shipping_day_id, :prefecture_id, :category_id,
       :image)
   end
-
 end
