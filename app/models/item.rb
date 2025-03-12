@@ -8,8 +8,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :category
 
-  validates :name, :description, :price, presence: true
-  validates :condition_id, :shipping_fee_status_id, :shipping_day_id, :prefecture_id, :category_id, presence: true
+  validates :name, presence: true, length: { maximum: 40 }
+  validates :description, presence: true, length: { maximum: 1000 }
+  validates :price, presence: true,
+            numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :condition_id, :shipping_fee_status_id, :shipping_day_id, :prefecture_id, :category_id,
+            presence: true
 
   validates :shipping_fee_status_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
