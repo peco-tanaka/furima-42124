@@ -1,4 +1,4 @@
-function calc () {
+const calc = () => {
   const priceInput = document.getElementById("item-price");
   const addTaxPrice = document.getElementById("add-tax-price");
   const profit = document.getElementById("profit");
@@ -29,3 +29,4 @@ function calc () {
 };
 
 window.addEventListener('turbo:load', calc);
+window.addEventListener('turbo:render', calc);
