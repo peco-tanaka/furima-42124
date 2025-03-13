@@ -36,6 +36,4 @@ function calc () {
   priceInput.addEventListener('input', handleInput);
 };
 
-
-
 window.addEventListener('turbo:load', calc);
