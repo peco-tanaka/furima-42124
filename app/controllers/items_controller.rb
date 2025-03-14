@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       # flash[:error] = "Something went wrong"
-      render 'new'
+      render :new
     end
   end
 
@@ -30,12 +30,12 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-      if @item.update_attributes(params[:id])
+      if @item.update(item_params)
         # flash[:success] = "Object was successfully updated"
         redirect_to item_path(@item)
       else
         # flash[:error] = "Something went wrong"
-        render edit_item(@item)
+        render :edit
       end
   end
 
