@@ -39,7 +39,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     if @item.destroy
       # flash[:success] = 'Object was successfully deleted.'
       redirect_to root_path
