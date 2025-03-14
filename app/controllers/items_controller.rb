@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:edit, :update]
   before_action :authorize_user, only: [:edit, :update]
 
   def index
@@ -26,18 +27,16 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
-      if @item.update(item_params)
-        # flash[:success] = "Object was successfully updated"
-        redirect_to item_path(@item)
-      else
-        # flash[:error] = "Something went wrong"
-        render :edit
-      end
+    if @item.update(item_params)
+      # flash[:success] = "Object was successfully updated"
+      redirect_to item_path(@item)
+    else
+      # flash[:error] = "Something went wrong"
+      render :edit
+    end
   end
 
   private
@@ -48,8 +47,11 @@ class ItemsController < ApplicationController
       :image).merge(user_id: current_user.id)
   end
 
-  def authorize_user
+  def set_item
     @item = Item.find(params[:id])
+  end
+
+  def authorize_user
     unless current_user == @item.user
       redirect_to root_path
       return
