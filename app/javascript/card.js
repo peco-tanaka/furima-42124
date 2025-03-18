@@ -1,5 +1,6 @@
 const pay = () => {
-  const publicKey = ENV['PAYJP_PUBLIC_KEY']
+  const form = document.getElementById("charge-form");
+  const publicKey = form.dataset.payjpPublicKey
   const payjp = Payjp(publicKey);
 
   const elements = payjp.elements();
@@ -11,7 +12,6 @@ const pay = () => {
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
 
-  const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
