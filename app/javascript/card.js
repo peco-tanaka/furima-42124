@@ -1,6 +1,5 @@
 const pay = () => {
-  // 後で環境変数で設定する
-  const publicKey = "pk_test_ce03814f83a2595d60a7014e"
+  const publicKey = ENV['PAYJP_PUBLIC_KEY']
   const payjp = Payjp(publicKey);
 
   const elements = payjp.elements();
