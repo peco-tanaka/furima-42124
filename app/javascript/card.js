@@ -11,11 +11,11 @@ const pay = () => {
   const expiryElement = elements.create('cardExpiry');
   const cvcElement = elements.create('cardCvc');
 
-  if (!numberForm || !expiryForm || !cvcForm) return;
+  numberElement.mount('#number-form');
+  expiryElement.mount('#expiry-form');
+  cvcElement.mount('#cvc-form');
 
-  numberElement.mount(number-form);
-  expiryElement.mount(expiry-form);
-  cvcElement.mount(cvc-form);
+  if (!numberForm || !expiryForm || !cvcForm) return;
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
