@@ -1,4 +1,6 @@
 const pay = () => {
+  if (typeof gon === "undefined") return;
+
   const publicKey = gon.public_key
   const payjp = Payjp(publicKey);
 
