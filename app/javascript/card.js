@@ -1,5 +1,5 @@
 const pay = () => {
-  const publicKey = GainNode.public_key
+  const publicKey = gon.public_key
   const payjp = Payjp(publicKey);
 
   const elements = payjp.elements();
