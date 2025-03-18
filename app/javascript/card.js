@@ -1,5 +1,8 @@
 const pay = () => {
   const form = document.getElementById("charge-form");
+
+  if (!form) return;
+
   const publicKey = form.dataset.payjpPublicKey
   const payjp = Payjp(publicKey);
 
@@ -11,6 +14,8 @@ const pay = () => {
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
+
+  if (!numberForm || !expiryForm || !cvcForm) return;
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
