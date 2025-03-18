@@ -20,10 +20,15 @@ const pay = () => {
 
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
-        alert(response.error.message);
+        const errorInput = document.createElement("input");
+        errorInput.setAttribute('type', 'hidden');
+        errorInput.setAttribute('name', 'token');
+        errorInput.setAttribute('value', "");
+        form.appendChild(errorInput);
+
+        form.submit();
       } else {
         const token = response.id;
-
         const tokenInput = document.createElement("input");
         tokenInput.setAttribute('type', 'hidden');
         tokenInput.setAttribute('name', 'token');
