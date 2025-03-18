@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   attr_accessor :token
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_form = OrderForm.new
   end
 
