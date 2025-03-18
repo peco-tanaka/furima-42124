@@ -30,7 +30,7 @@
       </p>
     </div>
     <%# /支払額の表示 %>
-    <%# サーバー側のエラー表示の為model, urlも明記 %>
+    <%# サーバー側のエラー表示の為model, urlも明記。data属性を設定しJSから環境変数を使用できるよう設定 %>
     <%= form_with model: @order_form, url: item_orders_path(@item), id: 'charge-form', class: 'transaction-form-wrap', data: { payjp_public_key: ENV['PAYJP_PUBLIC_KEY'] }, local: true do |f| %>
     <%= render 'shared/error_messages', model: @order_form %>
     <%# カード情報の入力 %>
