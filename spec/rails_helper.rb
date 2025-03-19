@@ -62,3 +62,30 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+require 'database_cleaner/active_record'
+
+RSpec.configure do |config|
+  # トランザクションフィクスチャをオフにする
+  config.use_transactional_fixtures = false
+
+  # テスト実行前に一度データベースをクリーンにする
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # 各テストの前にtruncation戦略を設定
+  config.before(:each) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  # 各テストの前に開始
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  # 各テストの後にクリーンアップ
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+end
