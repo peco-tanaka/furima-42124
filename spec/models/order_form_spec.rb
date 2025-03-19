@@ -80,7 +80,6 @@ RSpec.describe OrderForm, type: :model do
         it 'phone_numberは - が含まれていると登録できない' do
           @order_form.phone_number = "111-1111-1111"
           @order_form.valid?
-          binding.pry
           expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input only number")
         end
       end
