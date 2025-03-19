@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  attr_accessor :token
 
   def index
     if @item.order.present? || (current_user.id == @item.user_id)
