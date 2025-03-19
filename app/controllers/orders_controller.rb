@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
   attr_accessor :token
 
   def index
-    if @item.order.present? || !user_signed_in? || (current_user.id == @item.user_id)
+    if @item.order.present? || (current_user.id == @item.user_id)
       return redirect_to root_path
     end
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
