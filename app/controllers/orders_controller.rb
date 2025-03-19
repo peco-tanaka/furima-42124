@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   attr_accessor :token
 
   def index
-    if !user_signed_in? || (current_user.id == @item.user_id)
+    if @item.order.presence? || !user_signed_in? || (current_user.id == @item.user_id)
       return redirect_to root_path
     end
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order_form).permit(
-    :token, :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number
+    :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number
     ).merge(
     user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
