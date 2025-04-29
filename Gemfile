@@ -93,3 +93,5 @@ gem "payjp"
 gem "gon"
 
 gem "dotenv-rails"
+
+gem "aws-sdk-s3", require: false
